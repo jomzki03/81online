@@ -5,16 +5,16 @@
 </head>
 <body>
 	<?php 
-	//  判断是否登陆
+	//  Determine whether Logged in or not 
 	if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
-		//  验证失败，将 $_SESSION["success"] 置为 false
+		//  Validation failed with $ _SESSION ["success"] set to false
 		$_SESSION["success"] = false;
-		echo("您没有登录,正跳转到登录页");
+		echo("You are not logged in! Redirecting to login page.");
 		echo("<meta http-equiv=refresh content='2; url=login.php'>");
 		die();
 	}
-	else if($admin_row[0]!=3){					//判断是否是管理员 3 级
-		echo("您没有权限。正跳转回上一页。");
+	else if($admin_row[0]!=3){					//Determine whether the administrator 3
+		echo("You do not have permission! Returning to previous page.");
 		echo("<meta http-equiv=refresh content='0; url=index.php?s=".$sn."'>");
 	}
 	else {
@@ -28,13 +28,13 @@
 
 					<td width="10%">
 						<div align="center">
-							<a href="index.php?s=<?php echo ''.$sn.''; ?>">首页</a>
+							<a href="index.php?s=<?php echo ''.$sn.''; ?>">Home</a>
 						</div>
 					</td>
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]!=1){ ?>
-							<a href="newuser.php?s=<?php echo ''.$sn.''; ?>">添加用户</a>
+							<a href="newuser.php?s=<?php echo ''.$sn.''; ?>">Add User</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -42,7 +42,7 @@
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]==3){ ?>
-							<a href="deluser.php?s=<?php echo ''.$sn.''; ?>">删除用户</a>
+							<a href="deluser.php?s=<?php echo ''.$sn.''; ?>">Delete User</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -50,7 +50,7 @@
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]!=1){ ?>
-							<a href="admin_list.php?s=<?php echo ''.$sn.''; ?>">管理员列表</a>
+							<a href="admin_list.php?s=<?php echo ''.$sn.''; ?>">Administrator List</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -63,7 +63,7 @@
 
 					<td width="10%">
 						<div align="center">
-							<a href="logout.php?s=<?php echo ''.$sn.''; ?>">退出</a>
+							<a href="logout.php?s=<?php echo ''.$sn.''; ?>">Log Out</a>
 						</div>
 					</td>
 				</tr>
@@ -74,26 +74,26 @@
 					bgColor=#ffff99 border=0>
 					<TBODY>
 						<TR>
-							<TD align=right height=25>用户名：&nbsp; <INPUT tabIndex=1 type=text
+							<TD align=right height=25>Username: &nbsp; <INPUT tabIndex=1 type=text
 								maxLength=20 size=20 name=username>
 							</TD>
 						</TR>
 						<TR>
-							<TD align=right>密码：&nbsp; <INPUT tabIndex=2 type=password
+							<TD align=right>Password: &nbsp; <INPUT tabIndex=2 type=password
 								maxLength=20 size=20 name=password>
 							</TD>
 						</TR>
 						<TR>
-							<TD align=right>是否管理员（1为是 0为否）：&nbsp; <INPUT tabIndex=2 type=text
+							<TD align=right>Administrator Level: &nbsp; <INPUT tabIndex=2 type=text
 								maxLength=20 size=20 name=admin_level value=0>
 							</TD>
 						</TR>
 						<TR>
 							<TD align=middle height=25><INPUT id=del_user
 								style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 65px; CURSOR: hand; BORDER-BOTTOM: 0px; HEIGHT: 18px"
-								type=submit value="删除用户" name=del_user> <INPUT id=reset
+								type=submit value="Delete User" name=del_user> <INPUT id=reset
 								style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 52px; CURSOR: hand; BORDER-BOTTOM: 0px; HEIGHT: 18px"
-								type=reset value="重置" name=reset>
+								type=reset value="Reset" name=reset>
 							</TD>
 						</TR>
 
