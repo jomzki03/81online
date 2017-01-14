@@ -2,17 +2,17 @@
 <html>
 <head>
 <?php include_once('header.php'); ?>
-<title>Admin</title>
+<title>Administrator</title>
 </head>
 <body>
 	<?php
 	if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
-		//  验证失败，将 $_SESSION["success"] 置为 false
+		// Validation failed with $ _SESSION ["success"] set to false
 		$_SESSION["success"] = false;
 		echo("<meta http-equiv=refresh content='0; url=login.php'>");
 	}
-	else if($admin_row[0]==1){					//判断是否是管理员 3 级
-		echo("您没有权限。正跳转回上一页。");
+	else if($admin_row[0]==1){					/// Determine whether it is administrator 3
+		echo("You do not have permission. Returning to previous page");
 		echo("<meta http-equiv=refresh content='0; url=index.php?s=".$sn."'>");
 	}
 	else {
@@ -26,13 +26,13 @@
 
 					<td width="10%">
 						<div align="center">
-							<a href="index.php?s=<?php echo ''.$sn.''; ?>">首页</a>
+							<a href="index.php?s=<?php echo ''.$sn.''; ?>">Home</a>
 						</div>
 					</td>
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]!=1){ ?>
-							<a href="newuser.php?s=<?php echo ''.$sn.''; ?>">添加用户</a>
+							<a href="newuser.php?s=<?php echo ''.$sn.''; ?>">Add User</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -40,7 +40,7 @@
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]==3){ ?>
-							<a href="deluser.php?s=<?php echo ''.$sn.''; ?>">删除用户</a>
+							<a href="deluser.php?s=<?php echo ''.$sn.''; ?>">Delete User</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -48,7 +48,7 @@
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]!=1){ ?>
-							<a href="admin_list.php?s=<?php echo ''.$sn.''; ?>">管理员列表</a>
+							<a href="admin_list.php?s=<?php echo ''.$sn.''; ?>">Administrators List</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -61,7 +61,7 @@
 
 					<td width="10%">
 						<div align="center">
-							<a href="logout.php?s=<?php echo ''.$sn.''; ?>">退出</a>
+							<a href="logout.php?s=<?php echo ''.$sn.''; ?>">Logout</a>
 						</div>
 					</td>
 				</tr>
@@ -74,7 +74,7 @@
 			<tr class="Title_style2">
 				<td width="25%">
 					<div align="left">
-						<a> 用户名</a>
+						<a> Username</a>
 					</div>
 				</td>
 
@@ -108,7 +108,7 @@
 			</tr>
 			<?php } ?>
 		</table>
-		<p align="center" class="Content_style1">本页面每5分钟刷新一次</p>
+		<p align="center" class="Content_style1">This page is refreshed every 5 minutes</p>
 	</div>
 	<?php 
 	mysql_close($conn);
