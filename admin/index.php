@@ -2,12 +2,12 @@
 <html>
 <head>
 <?php include_once('header.php'); ?>
-<title>Admin</title>
+<title>Admininstrator Panel</title>
 </head>
 <body>
 	<?php
 	if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
-		//  验证失败，将 $_SESSION["success"] 置为 false
+		//  Validation failed with $ _SESSION ["success"] set to false
 		$_SESSION["success"] = false;
 		echo("<meta http-equiv=refresh content='0; url=login.php'>");
 	} else {
@@ -21,7 +21,7 @@
 				$i++;
 				if($i==4) break;
 			}
-			$units = array("字节","KB","MB","GB","TB");
+			$units = array("BIT","KB","MB","GB","TB");
 			$newsize=round($bytesize,2);
 			return("$newsize $units[$i]");
 		}
@@ -29,10 +29,10 @@
 		function actformat($value)
 		{
 			if ($value==1){
-				return "活跃";
+				return "active";
 			}
 			else{
-				return "停用";
+				return "disable";
 			}
 		}
 
@@ -47,13 +47,13 @@
 			<tr class="Title_style2">
 				<td width="25%">
 					<div align="left">
-						<a> 用户名</a>
+						<a> Username</a>
 					</div>
 				</td>
 
 				<td width="25%">
 					<div align="left">
-						<a> 姓名</a>
+						<a> Name</a>
 					</div>
 				</td>
 
@@ -65,7 +65,7 @@
 
 				<td width="25%">
 					<div align="left">
-						<a>状态</a>
+						<a>Status</a>
 					</div>
 				</td>
 			</tr>
@@ -74,10 +74,10 @@
 				<td><?php echo $row['name'] ?></td>
 				<td><?php echo $row['email'] ?></td>
 				<td><?php if($row['active']==1){
-					echo "活跃";
+					echo "Active";
 				}
 				else{
-						echo "停用";
+						echo "Disable";
 					} ?>
 				</td>
 			</tr>
@@ -86,25 +86,25 @@
 
 				<td width="25%">
 					<div align="left">
-						<a> 周期</a>
+						<a> Cycle</a>
 					</div>
 				</td>
 
 				<td width="25%">
 					<div align="left">
-						<a> 总流量</a>
+						<a> Total</a>
 					</div>
 				</td>
 
 				<td width="25%">
 					<div align="left">
-						<a> 总使用量</a>
+						<a> Total Usage</a>
 					</div>
 				</td>
 
 				<td width="25%">
 					<div align="left">
-						<a> 剩余流量</a>
+						<a> Remaining Data</a>
 					</div>
 				</td>
 			</tr>
@@ -120,7 +120,7 @@
 			<tr><td colspan=4 style="height:10px;"></td></tr>
 			<?php } ?>
 		</table>
-		<p align="center" class="Content_style1">本页面每5分钟刷新一次</p>
+		<p align="center" class="Content_style1">This page is refreshed every 5 minutes</p>
 	</div>
 	<?php 
 	mysql_close($conn);
