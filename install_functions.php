@@ -1,7 +1,7 @@
 <?php
-//表单提交后...
+//After the form is submitted...
 $posts = $_POST;
-//清除一些空白符号
+//Clear some blank symbols
 foreach ($posts as $key => $value) {
 	$posts[$key] = trim($value);
 }
@@ -18,10 +18,10 @@ if(isset($_POST['install'])){
 		break;
 	}
 	else{
-		//写配置文件
+		//Write the configuration file
 		write_config($mysql_server_name, $mysql_username, $mysql_password, $mysql_dbname);
 	}
-	//创建数据库 连接数据库
+	//Create a database connection database
 	$db_selected = mysql_select_db($mysql_dbname);
 	if(!$db_selected) {
 		$sql="CREATE DATABASE IF NOT EXISTS `$mysql_dbname` CHARACTER SET utf8 COLLATE utf8_unicode_ci";
@@ -38,31 +38,31 @@ if(isset($_POST['install'])){
 			}
 		}
 	}
-	//执行数据库初始化
+	//Performs database initialization
 	if(file_exists('./database.sql')){
 		run_sql_file('./database.sql');
 	}
 	else{
-		echo "无法找到  install 文件夹中的 database.sql。请检查 install 文件夹的完整性。";
+		echo "Can not find database.sql in the installation folder. Check the integrity of the folder.";
 		break;
 	}
 	$admin_username = mysql_real_escape_string($posts['admin_username']);
 	$admin_passwd	= mysql_real_escape_string($posts['admin_passwd']);
 	$admin_email	= mysql_real_escape_string($posts['email']);
-	//添加管理员
+	//Add an administrator
 	$sql="INSERT INTO  `$mysql_dbname`.`admin` (`id` ,`username` ,`password` ,`email` ,`admin_level`)
 			VALUES (NULL , '$admin_username',
 			password('$admin_passwd'), '$admin_email',  '3')";
 	$result=mysql_query($sql);
 	if(!$result){
-		echo("管理员添加失败！".mysql_errno());
+		echo("Adminstrator account added failed!".mysql_errno());
 		break;
 	}
 	else{
-		echo("管理员添加成功！\n
-				用户名：".mysql_real_escape_string($posts['admin_username'])."\n
-				密码：".mysql_real_escape_string($posts['admin_passwd'])."\n
-				邮箱：".mysql_real_escape_string($posts['email']));
+		echo("Administrator account added successfully!\n
+				Username: ".mysql_real_escape_string($posts['admin_username'])."\n
+				Password: ".mysql_real_escape_string($posts['admin_passwd'])."\n
+				Email: ".mysql_real_escape_string($posts['email']));
 	}
 	write_lock();
 	break;
@@ -71,11 +71,11 @@ if(isset($_POST['install'])){
 
 
 /**
- * 将配置文件写到data文件夹
- * @param string $mysql_server_name		服务器名称
- * @param string $mysql_username		数据库用户名
- * @param string $mysql_password		数据库密码
- * @param string $mysql_dbname			数据库名
+* Write the configuration file to the data folder
+  * @param string $ mysql_server_name The server name
+  * @param string $ mysql_username database user name
+  * @param string $ mysql_password Database password
+  * @param string $ mysql_dbname The database name
  */
 function write_config($mysql_server_name,$mysql_username,$mysql_password,$mysql_dbname){
 	$configFile = "./data/config.inc.php";
