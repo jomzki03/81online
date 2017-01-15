@@ -5,16 +5,16 @@
 </head>
 <body>
 	<?php 
-	//  判断是否登陆
+	//  Determine whether logged in or not
 	if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
-		//  验证失败，将 $_SESSION["success"] 置为 false
+		// Validation failed with $ _SESSION ["success"] set to false
 		$_SESSION["success"] = false;
-		echo("您没有登录,正跳转到登录页");
+		echo("You are not logged in! Redirecting to login page.");
 		echo("<meta http-equiv=refresh content='2; url=login.php'>");
 		die();
 	}
 	else if($admin_row[0]==1){
-		echo("您没有权限。正跳转回首页。");
+		echo("You do not have permission! Returning to home page.");
 		echo("<meta http-equiv=refresh content='0; url=index.php?s=".$sn."'>");
 	}
 	else {
@@ -29,13 +29,13 @@
 
 					<td width="10%">
 						<div align="center">
-							<a href="index.php?s=<?php echo ''.$sn.''; ?>">首页</a>
+							<a href="index.php?s=<?php echo ''.$sn.''; ?>">Home</a>
 						</div>
 					</td>
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]!=1){ ?>
-							<a href="newuser.php?s=<?php echo ''.$sn.''; ?>">添加用户</a>
+							<a href="newuser.php?s=<?php echo ''.$sn.''; ?>">Add User</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -43,7 +43,7 @@
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]==3){ ?>
-							<a href="deluser.php?s=<?php echo ''.$sn.''; ?>">删除用户</a>
+							<a href="deluser.php?s=<?php echo ''.$sn.''; ?>">Delete User</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -51,7 +51,7 @@
 					<td width="20%">
 						<div align="center">
 							<?php if($admin_row[0]!=1){ ?>
-							<a href="admin_list.php?s=<?php echo ''.$sn.''; ?>">管理员列表</a>
+							<a href="admin_list.php?s=<?php echo ''.$sn.''; ?>">Administrator List</a>
 							<?php } ?>
 						</div>
 					</td>
@@ -64,7 +64,7 @@
 
 					<td width="10%">
 						<div align="center">
-							<a href="logout.php?s=<?php echo ''.$sn.''; ?>">退出</a>
+							<a href="logout.php?s=<?php echo ''.$sn.''; ?>">Log Out</a>
 						</div>
 					</td>
 				</tr>
@@ -75,66 +75,66 @@
 					bgcolor="#FFFF99" border="0">
 					<tbody>
 						<tr>
-							<td align="right" height="25">用户名：&nbsp; <input tabindex="1"
+							<td align="right" height="25">Username: &nbsp; <input tabindex="1"
 								type="text" maxlength="20" size="20" name="username">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">密码：&nbsp; <input tabindex="2" type="password"
+							<td align="right">Password: &nbsp; <input tabindex="2" type="password"
 								maxlength="20" size="20" name="password">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">重复密码：&nbsp; <input tabindex="3" type="password"
+							<td align="right">Repeat Password: &nbsp; <input tabindex="3" type="password"
 								maxlength="20" size="20" name="repassword">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">姓名：&nbsp; <input tabindex="3" type="text"
+							<td align="right">Name: &nbsp; <input tabindex="3" type="text"
 								maxlength="20" size="20" name="name">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">Email：&nbsp; <input tabindex="3" type="text"
+							<td align="right">Email: &nbsp; <input tabindex="3" type="text"
 								maxlength="40" size="20" name="email">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">用户等级(1-3 默认为1)：&nbsp; <input tabindex="3"
+							<td align="right">User Level (1-3 default 1): &nbsp; <input tabindex="3"
 								type="text" maxlength="1" size="20" name="level" value="1">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">管理员(1为是 0为否)：&nbsp; <input tabindex="3"
+							<td align="right">Administrator (1 for Yes, 0 for No): &nbsp; <input tabindex="3"
 								type="text" maxlength="1" size="20" name="admin_level" value="0">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">周期（天）：&nbsp; <input tabindex="3" type="text"
+							<td align="right">Subcription (Days): &nbsp; <input tabindex="3" type="text"
 								maxlength="20" size="20" name="cycle" value="30">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">流量(GB)：&nbsp; <input tabindex="3" type="text"
+							<td align="right">Data (GB)：&nbsp; <input tabindex="3" type="text"
 								maxlength="20" size="20" name="quota_bytes" value="10">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">状态(1是活跃)：&nbsp; <input tabindex="3" type="text"
+							<td align="right">Status: (1 is Active): &nbsp; <input tabindex="3" type="text"
 								maxlength="20" size="20" name="active" value="1">
 							</td>
 						</tr>
 						<tr>
-							<td align="right">启用：&nbsp; <input tabindex="3" type="text"
+							<td align="right">Enabled: &nbsp; <input tabindex="3" type="text"
 								maxlength="20" size="20" name="enable" value="1">
 							</td>
 						</tr>
 						<tr>
 							<td align="middle" height="25"><input id="new_user"
 								style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 65px; CURSOR: hand; BORDER-BOTTOM: 0px; HEIGHT: 18px"
-								type="submit" value="添加用户" name="new_user"> <input id="reset"
+								type="submit" value="Add User" name="new_user"> <input id="reset"
 								style="BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 52px; CURSOR: hand; BORDER-BOTTOM: 0px; HEIGHT: 18px"
-								type="reset" value="重置" name="reset">
+								type="reset" value="Reset" name="reset">
 							</td>
 						</tr>
 					</tbody>
