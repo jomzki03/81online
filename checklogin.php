@@ -1,57 +1,57 @@
 <?php
 include("./data/config.inc.php");
-//表单提交后...
+//After the form is submitted...
 $posts = $_POST;
-//清除一些空白符号
+//Clear some blank symbols
 foreach ($posts as $key => $value) {
     $posts[$key] = trim($value);
 }
 
 echo($db_host+$db_user+$db_pass);
 
-mysql_connect($db_host,$db_user,$db_pass) //填写mysql用户名和密码  
+mysql_connect($db_host,$db_user,$db_pass) //Fill in the mysql user name and password
    or die("abc"+mysql_error());    
 
 mysql_select_db($db_name) or die("bcd"+mysql_error()); 
 
-mysql_query('set names "gbk"'); //数据库内数据的编码  
+mysql_query('set names "gbk"'); //Encoding of data in the database  
 $password =  mysql_real_escape_string($posts["password"]);
 $username = mysql_real_escape_string($posts["username"]); 
 $sql = "SELECT * FROM user WHERE password = password('$password') AND username = '$username'";
-//  取得查询结果
+//  Get the query results
 $result = mysql_query($sql) or die ("wrong"); 
 $userInfo = mysql_fetch_array($result); 
 
 if (!empty($userInfo)) {
 
 if ($userInfo["username"] == $username) { 
-    //  设置一个存放目录
+    //  Set up a storage directory
     $savePath = '../ss_save_dir/';
-    //  保存一天
+    //  Save the day
     $lifeTime = 24 * 3600;
-    //  取得当前 Session 名，默认为 PHPSESSID
+    //  Get the current Session name, the default is PHPSESSID
     $sessionName = session_name();
-    //  取得 Session ID
+    //  Obtain Session ID
     $sessionID = $_GET[$sessionName];
-    //  使用 session_id() 设置获得的 Session ID
+    //  Use session_id () to set the session ID obtained
     session_id($sessionID); 
     session_set_cookie_params($lifeTime);
-    //  当验证通过后，启动 Session
+    //  When the authentication is passed, the session is started
     session_start();
-    //  注册登陆成功的 admin 变量，并赋值 true
+    //  Register the successful login admin variable and assign true
     $_SESSION["admin"] = true;
     $_SESSION["username"] = $username;
     $sn = session_id();
         echo("<meta http-equiv=refresh content='0; url=index.php?s=".$sn."'>"); 
 } else { 
-echo("用户名密码错误code2,5秒后跳转到登录页"); 
+echo("Username or password error code 2! 5 seconds after returning to login page."); 
 
 echo("<meta http-equiv=refresh content='5; url=login.php'>");
 
 } 
 
 } else {
-    echo("用户名密码错误code1,5秒后跳转到登录页");
+    echo("Username or password error code 1! 5 seconds after returning to login page.");
 
     echo("<meta http-equiv=refresh content='5; url=login.php'>");
 
