@@ -2,15 +2,15 @@
 <html>
 <head>
 <?php include_once('header.php'); ?>
-<title>程序下载</title>
+<title>Download Openvpn</title>
 </head>
 <body>
 	<?php 
-	//  判断是否登陆
+	//  Determine whether logged in or not
 	if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
-		//  验证失败，将 $_SESSION["success"] 置为 false
+		//  Validation failed with $ _SESSION ["success"] set to false
 		$_SESSION["success"] = false;
-		echo("您没有登录,正跳转到登录页");
+		echo("You are not logged in! Redirecting to login page.");
 		echo("<meta http-equiv=refresh content='2; url=login.php'>");
 		die();
 	}
@@ -18,11 +18,11 @@
 ?>
 
 	<div style="text-align: center;">
-		<br> <a href="./doc/openvpn-install-2.3.2-I001-i686.exe">Windows版下载 32位（通用版）</a>
+		<br> <a href="./doc/openvpn-install-2.3.2-I001-i686.exe">Download for Windows 32-bit (Universal)</a>
 		<br>
-		<br> <a href="./doc/openvpn-install-2.3.2-I001-x86_64.exe">Windows版下载64位</a>
+		<br> <a href="./doc/openvpn-install-2.3.2-I001-x86_64.exe">Download for Windows 64-bit</a>
 		<br>
-		<br> <a href="./doc/Tunnelblick_3.3beta21b.dmg">Mac版下载</a>
+		<br> <a href="./doc/Tunnelblick_3.3beta21b.dmg">Mac Download</a>
 	</div>
 </body>
 <?php } ?>
