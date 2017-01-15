@@ -5,18 +5,18 @@
 include("../data/config.inc.php");
 require_once("admin_functions.php");
 ?>
-<title>Admin</title>
+<title>Administrator Panel</title>
 
 <?php
 
-//  防止全局变量造成安全隐患
+//  To prevent global variables caused by security risks
 $admin = false;
 session_id($_GET['s']);
 session_start();
 $sn=session_id();
-//  判断是否登陆
+//  Determine whether Logged in or not
 if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
-	//  验证失败，将 $_SESSION["success"] 置为 false
+	//  Validation failed with $ _SESSION ["success"] set to false
 	$_SESSION["success"] = false;
 	echo("<meta http-equiv=refresh content='0; url=login.php'>");
 } else {
@@ -36,7 +36,7 @@ if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
 		cellspacing="0">
 		<tr>
 			<TH align=left height=113><a
-				href="index.php?s=<?php echo ''.$sn.''; ?>" title="首页"><IMG height=113
+				href="index.php?s=<?php echo ''.$sn.''; ?>" title="Home"><IMG height=113
 					src="../images/logo.png" alt=""> </a>
 			</TH>
 		</tr>
@@ -45,7 +45,7 @@ if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
 		<tr class="Title_style1" bgcolor="#92ccfd">
 			<td width="20%">
 				<div align="center">
-					<a href="./index.php?s=<?php echo ''.$sn.''; ?>">首页</a>
+					<a href="./index.php?s=<?php echo ''.$sn.''; ?>">Home</a>
 				</div>
 			</td>
 
@@ -64,20 +64,20 @@ if (!(isset($_SESSION["success"]) && $_SESSION["success"] == true)) {
 
 			<td width="15%">
 				<div align="center">
-					<a href="change.php?s=<?php echo ''.$sn.''; ?>">修改密码</a>
+					<a href="change.php?s=<?php echo ''.$sn.''; ?>">Change Password</a>
 				</div>
 			</td>
 
 			<td width="10%">
 				<div align="center">
-					<a href="logout.php?s=<?php echo ''.$sn.''; ?>">退出</a>
+					<a href="logout.php?s=<?php echo ''.$sn.''; ?>">Log Out</a>
 				</div>
 			</td>
 
 			<td width="auto">
 				<div align="center">
 					<?php if($admin_row[0]!=1){ ?>
-					<a href="newuser.php?s=<?php echo ''.$sn.''; ?>">管理界面</a>
+					<a href="newuser.php?s=<?php echo ''.$sn.''; ?>">Management Interface</a>
 					<?php } ?>
 				</div>
 			</td>
